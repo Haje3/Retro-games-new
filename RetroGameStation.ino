@@ -195,7 +195,11 @@ int runReaction(uint8_t d,uint16_t col){
   drawHeader("REACTION",col);centerText("Wait for GREEN",65,TFT_WHITE,2);centerText("then press A",95,TFT_WHITE,2);
   delay(random(1200,3500));tft.fillScreen(TFT_GREEN);uint32_t start=millis();
   while(!pressed(PIN_A)){if(pressed(PIN_B)||pressed(PIN_SELECT))return -1;if(millis()-start>5000){gameOver(0,"TOO SLOW");return 0;}delay(1);}
-  int ms=millis()-start;gameOver(5000-ms,"MS "+String(ms).c_str());return 5000-ms;
+  int ms = millis() - start;
+  char msg[24];
+  snprintf(msg, sizeof(msg), "MS %d", ms);
+  gameOver(5000 - ms, msg);
+  return 5000 - ms;
 }
 int runMaze(uint8_t d,uint16_t col){
   const uint8_t map[8][12]={
