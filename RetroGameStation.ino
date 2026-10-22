@@ -223,7 +223,12 @@ int runTarget(uint8_t d,uint16_t col){
     if(edge(PIN_UP))y=max(35,y-12);if(edge(PIN_DOWN))y=min(220,y+12);
     if(edge(PIN_A)){shots++;if(abs(x-120)<18&&abs(y-120)<18)score+=10;}
     if(abortGame())return -1;
-    tft.fillRect(0,28,240,212,TFT_BLACK);tft.drawCircle(120,120,22,TFT_RED);tft.drawCircle(120,120,12,TFT_RED);tft.drawCircle(120,120,3,TFT_RED);tft.drawCross(x,y,8,col);
+    tft.fillRect(0,28,240,212,TFT_BLACK);
+    tft.drawCircle(120,120,22,TFT_RED);
+    tft.drawCircle(120,120,12,TFT_RED);
+    tft.drawCircle(120,120,3,TFT_RED);
+    tft.drawLine(x-8,y,x+8,y,col);
+    tft.drawLine(x,y-8,x,y+8,col);
     tft.setTextColor(TFT_WHITE,TFT_BLACK);tft.setTextSize(1);tft.setCursor(4,30);tft.printf("SCORE %d  SHOTS %d",score,shots);delay(30);
   }
   gameOver(score,"TIME UP");return score;
