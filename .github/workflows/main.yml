@@ -5,12 +5,12 @@ on:
   workflow_dispatch:
   push:
     paths:
-      - "RetroGameStation/**"
+      - "RetroGameStation.ino"
       - ".github/workflows/main.yml"
 
 jobs:
   build:
-  runs-on: ubuntu-latest
+    runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
 
@@ -44,7 +44,6 @@ jobs:
           #define SPI_FREQUENCY 27000000
           EOF
 
-      
       - name: Prepare sketch
         run: |
           mkdir -p build/RetroGameStation
