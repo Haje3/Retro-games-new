@@ -44,13 +44,18 @@ jobs:
           #define SPI_FREQUENCY 27000000
           EOF
 
+      
+      - name: Prepare sketch
+        run: |
+          mkdir -p build/RetroGameStation
+          cp RetroGameStation.ino build/RetroGameStation/RetroGameStation.ino
+
       - name: Compile
         run: |
           arduino-cli compile \
             --fqbn esp32:esp32:esp32 \
             --output-dir build \
-            --build-path build/temp \
-            RetroGameStation.ino
+            build/RetroGameStation
 
       - uses: actions/upload-artifact@v4
         with:
